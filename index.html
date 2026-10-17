@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#fffdf9">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Puzzles">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Puzzles</title>
+</head>
+<body>
+  <main id="home" class="screen">
+    <header class="home-header">
+      <div>
+        <h1>Puzzles</h1>
+        <p class="subtitle">Pick a picture to start</p>
+      </div>
+      <button id="sound-btn" class="pill" type="button" aria-pressed="true">
+        <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+        <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9l5 6M21 9l-5 6"/></svg>
+        <span>Sound on</span>
+      </button>
+    </header>
+
+    <button id="continue-btn" class="continue" type="button" hidden>
+      <img id="continue-thumb" alt="">
+      <span class="continue-text">
+        <strong>Keep going</strong>
+        <small id="continue-info"></small>
+      </span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    <section>
+      <h2>Your photos</h2>
+      <div id="my-photos" class="grid">
+        <label class="card add-card">
+          <input id="photo-input" type="file" accept="image/*">
+          <span class="plus" aria-hidden="true">+</span>
+          <span>Add a photo</span>
+        </label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Pictures</h2>
+      <div id="builtin" class="grid"></div>
+    </section>
+  </main>
+
+  <div id="play" class="screen" hidden>
+    <div class="toolbar">
+      <button id="home-btn" class="tool" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        <span>Home</span>
+      </button>
+      <div id="progress" class="progress" aria-live="polite"></div>
+      <button id="hint-btn" class="tool" type="button" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
+        <span>Picture</span>
+      </button>
+      <button id="spread-btn" class="tool" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        <span>Tidy</span>
+      </button>
+    </div>
+    <div class="stage">
+      <canvas id="board"></canvas>
+      <canvas id="confetti" aria-hidden="true"></canvas>
+      <div id="done" class="done" hidden>
+        <h2>You did it!</h2>
+        <p id="done-text"></p>
+        <div class="done-actions">
+          <button id="again-btn" class="btn secondary" type="button">Play again</button>
+          <button id="another-btn" class="btn primary" type="button">New puzzle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <dialog id="size-dialog">
+    <h2>How many pieces?</h2>
+    <img id="size-preview" class="preview" alt="">
+    <div id="size-grid" class="size-grid"></div>
+    <button id="size-cancel" class="btn secondary wide" type="button">Back</button>
+  </dialog>
+
+  <dialog id="confirm-dialog">
+    <h2 id="confirm-title"></h2>
+    <p id="confirm-text"></p>
+    <div class="dialog-actions">
+      <button id="confirm-cancel" class="btn secondary" type="button">Cancel</button>
+      <button id="confirm-ok" class="btn primary" type="button">OK</button>
+    </div>
+  </dialog>
+
+  <div id="busy" class="busy" hidden>
+    <div class="busy-card"><div class="spinner"></div><span id="busy-text">One moment…</span></div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
